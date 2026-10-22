@@ -1,5 +1,6 @@
 const PRODUCTS_A = [
  {
+  "no": 1,
   "name": "KRATOS Flarepants RIB Knit CUTBRAY (Beige)",
   "price": "",
   "note": "⭐ 4.5 (131,7rb ulasan) · 10rb+ terjual",
@@ -9,6 +10,7 @@ const PRODUCTS_A = [
   "badge": ""
  },
  {
+  "no": 2,
   "name": "Flare Highwaist Cutbray Jeans (Lookcid)",
   "price": "dari Rp99.900",
   "note": "⭐ 4.8 (45,6rb ulasan) · 10rb+ terjual",
@@ -18,6 +20,7 @@ const PRODUCTS_A = [
   "badge": ""
  },
  {
+  "no": 3,
   "name": "Sweatpants Loose Highwaist Celana Panjang Daily",
   "price": "",
   "note": "⭐ 4.6 (22rb ulasan) · 10rb+ terjual",
@@ -27,6 +30,7 @@ const PRODUCTS_A = [
   "badge": ""
  },
  {
+  "no": 4,
   "name": "New Lavie Pants Kulot Highwaist (Krem)",
   "price": "Rp34.999",
   "note": "⭐ 4.5 (12,5rb ulasan) · 10rb+ terjual",
@@ -36,6 +40,7 @@ const PRODUCTS_A = [
   "badge": ""
  },
  {
+  "no": 5,
   "name": "DAPIN Aira Pants Ballon (Ivory)",
   "price": "",
   "note": "⭐ 4.8 (8,3rb ulasan) · 10rb+ terjual · Top Selling #11",
