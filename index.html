@@ -44,6 +44,10 @@
     box-shadow:0 3px 0 rgba(107,66,38,.35);
   }
   .card:active{transform:scale(.98)}
+  .num{
+    flex:none;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;
+    font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;
+  }
   .card img{width:72px;height:72px;border-radius:12px;object-fit:cover;background:#eee;flex:none}
   .card .info{flex:1;min-width:0}
   .card .name{font-weight:700;font-size:15px;line-height:1.35}
@@ -102,6 +106,7 @@
     }
     main.innerHTML = list.map(p => `
       <a class="card" href="${p.url}" target="_blank" rel="noopener sponsored">
+        <div class="num">${p.no}</div>
         ${p.img ? `<img src="${p.img}" alt="">` : ''}
         <div class="info">
           <div class="name">${p.name}</div>
