@@ -1,5 +1,6 @@
 const PRODUCTS_B = [
  {
+  "no": 6,
   "name": "Jossellyn.co Ara Pants Knit Korean Style (Beige)",
   "price": "Rp39.999",
   "note": "⭐ 4.5 (8,7rb ulasan) · 10rb+ terjual",
@@ -9,6 +10,7 @@ const PRODUCTS_B = [
   "badge": ""
  },
  {
+  "no": 7,
   "name": "Tara id Devina Highwaist Kulot (Ivory)",
   "price": "dari Rp64.777",
   "note": "⭐ 4.8 (6,8rb ulasan) · 10rb+ terjual",
@@ -18,6 +20,7 @@ const PRODUCTS_B = [
   "badge": ""
  },
  {
+  "no": 8,
   "name": "Aira Balloon Wide Pants (Coklat Tua)",
   "price": "",
   "note": "⭐ 4.3 · 7,4rb terjual",
@@ -27,6 +30,7 @@ const PRODUCTS_B = [
   "badge": ""
  },
  {
+  "no": 9,
   "name": "Celana Kotak-kotak Ruffle (miho.shop)",
   "price": "Rp44.999",
   "note": "⭐ 5.0 · 1,8rb terjual",
