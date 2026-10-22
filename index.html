@@ -7,7 +7,7 @@
 <meta name="description" content="Spill produk worth it tiap hari. Yang viral, yang murah, yang beneran kepake.">
 <style>
   :root{
-    --red:#a11d1d; --red-dark:#7e1515; --cream:#faf3e3; --paper:#fffdf7;
+    --red:#a11d1d; --cream:#faf3e3; --paper:#fffdf7;
     --brown:#6b4226; --ink:#2b2320; --muted:#8a7a6d;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -27,22 +27,21 @@
   h1{font-size:24px;margin-top:14px;letter-spacing:.2px}
   .handle{color:var(--red);font-weight:700;margin-top:2px}
   .tagline{color:var(--muted);font-size:14px;line-height:1.55;margin:10px auto 0;max-width:340px}
-  .socials{display:flex;gap:10px;justify-content:center;margin-top:16px}
-  .socials a{
-    text-decoration:none;font-size:13px;font-weight:700;color:var(--paper);
-    background:var(--brown);padding:8px 16px;border-radius:999px;
-  }
-  .socials a:active{transform:scale(.97)}
   .section-title{
-    margin:28px 0 12px;font-size:13px;font-weight:800;letter-spacing:1.6px;
+    margin:26px 0 12px;font-size:13px;font-weight:800;letter-spacing:1.6px;
     text-transform:uppercase;color:var(--brown);text-align:center;
   }
+  .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+  .chip{
+    border:2px solid var(--brown);background:var(--paper);color:var(--brown);
+    font-weight:800;font-size:13px;padding:7px 15px;border-radius:999px;cursor:pointer;
+  }
+  .chip.active{background:var(--red);border-color:var(--red);color:#fff}
   .card{
     display:flex;gap:12px;align-items:center;background:var(--paper);
     border:2px solid rgba(107,66,38,.25);border-radius:16px;padding:12px;
     margin-bottom:12px;text-decoration:none;color:inherit;
     box-shadow:0 3px 0 rgba(107,66,38,.35);
-    transition:transform .08s ease;
   }
   .card:active{transform:scale(.98)}
   .card img{width:72px;height:72px;border-radius:12px;object-fit:cover;background:#eee;flex:none}
@@ -50,6 +49,10 @@
   .card .name{font-weight:700;font-size:15px;line-height:1.35}
   .card .price{color:var(--red);font-weight:800;font-size:15px;margin-top:3px}
   .card .note{color:var(--muted);font-size:12.5px;margin-top:2px;line-height:1.4}
+  .badge{
+    display:inline-block;background:#b8860b;color:#fff;font-size:10.5px;font-weight:800;
+    padding:2.5px 8px;border-radius:6px;margin-top:5px;letter-spacing:.4px;
+  }
   .card .cta{
     flex:none;background:var(--red);color:#fff;font-weight:800;font-size:13px;
     padding:10px 13px;border-radius:10px;text-align:center;line-height:1.25;
@@ -69,13 +72,15 @@
     <h1>Jajan Racun</h1>
     <div class="handle">@jajanracun.id</div>
     <p class="tagline">🛒 Spill produk worth it tiap hari<br>💸 Yang viral, yang murah, yang beneran kepake</p>
-    <div class="socials">
-      <a href="https://www.instagram.com/jajanracun.id" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a>
-    </div>
   </header>
 
   <div class="section-title">☠️ Racun Hari Ini</div>
+  <div class="filters" id="filters">
+    <button class="chip active" data-filter="Semua">Semua</button>
+    <button class="chip" data-filter="TikTok">TikTok</button>
+    <button class="chip" data-filter="Shopee">Shopee</button>
+    <button class="chip" data-filter="Tokopedia">Tokopedia</button>
+  </div>
   <main id="products"></main>
 
   <footer>
@@ -84,31 +89,40 @@
   </footer>
 </div>
 
+<script src="products-a.js"></script>
+<script src="products-b.js"></script>
 <script>
-  // ===== DAFTAR PRODUK — update di sini tiap ada spill baru =====
-  // name: nama produk | price: harga tampil | note: catatan singkat
-  // url: link affiliate produk | img: foto produk (assets/...) atau ""
-  // store: label tombol, mis. "Shopee" / "TikTok"
-  const PRODUCTS = [
-    // Contoh (hapus // buat aktifkan):
-    // { name: "Nama produk", price: "Rp00.000", note: "Kenapa ini worth it.", url: "https://", img: "", store: "Shopee" },
-  ];
-
+  const PRODUCTS = [...PRODUCTS_A, ...PRODUCTS_B];
   const main = document.getElementById('products');
-  if (!PRODUCTS.length) {
-    main.innerHTML = '<div class="empty">Racun pertama lagi disiapin ☠️<br>Pantengin terus, bentar lagi tayang.</div>';
-  } else {
-    main.innerHTML = PRODUCTS.map(p => `
+
+  function render(filter) {
+    const list = PRODUCTS.filter(p => filter === 'Semua' || p.store === filter);
+    if (!list.length) {
+      main.innerHTML = '<div class="empty">Belum ada racun dari ' + filter + '.<br>Segera tayang, pantengin aja.</div>';
+      return;
+    }
+    main.innerHTML = list.map(p => `
       <a class="card" href="${p.url}" target="_blank" rel="noopener sponsored">
         ${p.img ? `<img src="${p.img}" alt="">` : ''}
         <div class="info">
           <div class="name">${p.name}</div>
-          <div class="price">${p.price}</div>
+          ${p.price ? `<div class="price">${p.price}</div>` : ''}
           ${p.note ? `<div class="note">${p.note}</div>` : ''}
+          ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
         </div>
         <div class="cta">Cek Harga<small>di ${p.store || 'toko'}</small></div>
       </a>`).join('');
   }
+
+  document.getElementById('filters').addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.filter);
+  });
+
+  render('Semua');
 </script>
 </body>
 </html>
